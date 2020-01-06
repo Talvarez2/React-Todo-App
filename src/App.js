@@ -5,7 +5,6 @@ import Header from './components/layouts/Header';
 import AddTodo from './components/AddTodo';
 import About from './components/pages/About';
 import axios from 'axios';
-import './App.css';
 
 class App extends React.Component {
   state = {
