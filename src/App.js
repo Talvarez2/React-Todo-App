@@ -11,10 +11,13 @@ class App extends React.Component {
     todos: []
   }
 
-  componentDidMount() {
-    axios.get('https://jsonplaceholder.typicode.com/todos?_limit=10')
-      .then(res => this.setState({ todos: res.data }))
-  }
+  // componentDidMount() {
+  //   axios.get('https://jsonplaceholder.typicode.com/todos?_limit=10')
+  //     .then(res => {
+  //       console.log(res)
+  //       this.setState({ todos: res.data })
+  //     })
+  // }
 
   // Toggle Complete
   markComplete = (id) => {
@@ -29,21 +32,24 @@ class App extends React.Component {
 
   //delete Todo
   delTodo = (id) => {
-    axios.delete(`https://jsonplaceholder.typicode.com/todos/${id}`)
-      .then(res => this.setState({ todos: 
-        [...this.state.todos.filter(todo => 
-          todo.id !== id)] }));
+    this.setState({ todos: 
+      [...this.state.todos.filter(todo => todo.id !== id)] });
+    // axios.delete(`https://jsonplaceholder.typicode.com/todos/${id}`)
+    //   .then(res => this.setState({ todos: 
+    //     [...this.state.todos.filter(todo => 
+    //       todo.id !== id)] }));
     
   }
 
   // adding items to the Todo list
   addTodo = (title) => {
-    axios.post('https://jsonplaceholder.typicode.com/todos', {
-      title,
-      completed:false
-    })
-      .then( res => this.setState({ todos:
-        [...this.state.todos, res.data] }));
+    this.setState({ todos:[...this.state.todos, {id: 0, title, completed: false}] });
+  //   axios.post('https://jsonplaceholder.typicode.com/todos', {
+  //     title,
+  //     completed:false
+  //   })
+  //     .then( res => this.setState({ todos:
+  //       [...this.state.todos, res.data] }));
   }
 
   render() {
