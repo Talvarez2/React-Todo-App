@@ -2,6 +2,8 @@
 
 This is a small to-do App I built with [React](https://es.reactjs.org/) to practise my web developing skills.
 
+you can try it at [this link](https://talvarez2.github.io/React-Todo-App/).
+
 ## Available Scripts
 
 In the project directory, you can run:
