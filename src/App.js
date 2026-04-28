@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Todos from './components/Todos';
 import Header from './components/layouts/Header';
@@ -10,19 +10,19 @@ let nextId = 1;
 function App() {
   const [todos, setTodos] = useState([]);
 
-  const markComplete = (id) => {
-    setTodos(todos.map(todo =>
+  const markComplete = useCallback((id) => {
+    setTodos(prev => prev.map(todo =>
       todo.id === id ? { ...todo, completed: !todo.completed } : todo
     ));
-  };
+  }, []);
 
-  const delTodo = (id) => {
-    setTodos(todos.filter(todo => todo.id !== id));
-  };
+  const delTodo = useCallback((id) => {
+    setTodos(prev => prev.filter(todo => todo.id !== id));
+  }, []);
 
-  const addTodo = (title) => {
-    setTodos([...todos, { id: nextId++, title, completed: false }]);
-  };
+  const addTodo = useCallback((title) => {
+    setTodos(prev => [...prev, { id: nextId++, title, completed: false }]);
+  }, []);
 
   return (
     <Router>

@@ -1,6 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+const btnStyle = {
+  background: '#dc3545',
+  color: '#fff',
+  border: 'none',
+  padding: '4px 10px',
+  borderRadius: '50%',
+  cursor: 'pointer',
+  fontSize: '14px',
+  lineHeight: '1',
+};
+
 function TodoItem({ todo, markComplete, delTodo }) {
   const { id, title, completed } = todo;
 
@@ -11,11 +22,11 @@ function TodoItem({ todo, markComplete, delTodo }) {
     textDecoration: completed ? 'line-through' : 'none',
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
   };
 
   return (
-    <li style={style}>
+    <li style={style} role="listitem">
       <label style={{ flex: 1, cursor: 'pointer' }}>
         <input
           type="checkbox"
@@ -40,20 +51,10 @@ TodoItem.propTypes = {
   todo: PropTypes.shape({
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
-    completed: PropTypes.bool.isRequired
+    completed: PropTypes.bool.isRequired,
   }).isRequired,
   markComplete: PropTypes.func.isRequired,
-  delTodo: PropTypes.func.isRequired
-};
-
-const btnStyle = {
-  background: '#ff0000',
-  color: '#fff',
-  border: 'none',
-  padding: '2px 8px',
-  borderRadius: '50%',
-  cursor: 'pointer',
-  fontSize: '12px'
+  delTodo: PropTypes.func.isRequired,
 };
 
 export default TodoItem;

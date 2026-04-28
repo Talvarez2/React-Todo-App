@@ -49,11 +49,11 @@ yarn deploy
 ```
 src/
 ├── App.js                        # Root component with routing and state
-├── index.js                      # Entry point
 ├── App.test.js                   # Smoke test
+├── index.js                      # Entry point
 ├── components/
 │   ├── AddTodo.js                # Form to add new todos
-│   ├── TodoItem.js               # Single todo item with checkbox and delete
+│   ├── TodoItem.js               # Single todo with checkbox and delete
 │   ├── Todos.js                  # Todo list container
 │   ├── layouts/
 │   │   └── Header.js             # App header with navigation
@@ -61,6 +61,18 @@ src/
 │       └── About.js              # About page
 public/
 └── index.html                    # HTML template
+```
+
+## Architecture
+
+State lives in `App` and flows down via props — no global state management.
+
+```
+App (state: todos[])
+├── Header (nav links)
+├── AddTodo (form → addTodo callback)
+└── Todos (list)
+    └── TodoItem × N (checkbox + delete button)
 ```
 
 ## Tech Stack

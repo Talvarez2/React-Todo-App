@@ -32,6 +32,8 @@ yarn deploy   # deploy to GitHub Pages
 - **Functional components with hooks** — no class components
 - **PropTypes** on every component that receives props (use `.shape()` for objects, `.arrayOf()` for arrays)
 - **Immutable state updates** — always spread/filter, never mutate state directly
+- **`useCallback`** for handlers passed as props to prevent unnecessary re-renders
+- **Functional updater form** (`setTodos(prev => ...)`) to avoid stale closure bugs
 - **Accessibility** — use semantic HTML (`<nav>`, `<ul>`, `<li>`, `<label>`), ARIA labels on interactive elements
 - **No inline `bind()`** — use arrow functions or callbacks
 - **Short fragment syntax** (`<>...</>`) over `React.Fragment`
