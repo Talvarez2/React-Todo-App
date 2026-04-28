@@ -9,6 +9,7 @@ A simple, client-side todo list application built with [React](https://reactjs.o
 - Add, complete, and delete todos
 - Client-side routing with Home and About pages
 - Accessible UI with ARIA labels and semantic HTML
+- Empty state messaging when no todos exist
 
 ## Getting Started
 
@@ -68,10 +69,10 @@ public/
 State lives in `App` and flows down via props — no global state management.
 
 ```
-App (state: todos[])
+App (state: todos[], nextId ref)
 ├── Header (nav links)
 ├── AddTodo (form → addTodo callback)
-└── Todos (list)
+└── Todos (list, with empty state)
     └── TodoItem × N (checkbox + delete button)
 ```
 

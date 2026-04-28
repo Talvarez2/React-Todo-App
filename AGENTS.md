@@ -20,7 +20,7 @@ yarn deploy   # deploy to GitHub Pages
 |------|---------|
 | `src/App.js` | Root component — holds todo state, defines add/complete/delete handlers, sets up routing |
 | `src/components/AddTodo.js` | Controlled form for adding new todos |
-| `src/components/Todos.js` | Renders the list of `TodoItem` components |
+| `src/components/Todos.js` | Renders the list of `TodoItem` components; shows empty state when list is empty |
 | `src/components/TodoItem.js` | Single todo row — checkbox to toggle, button to delete |
 | `src/components/layouts/Header.js` | App header with nav links (Home, About) |
 | `src/components/pages/About.js` | Static About page |
@@ -33,18 +33,19 @@ yarn deploy   # deploy to GitHub Pages
 - **PropTypes** on every component that receives props (use `.shape()` for objects, `.arrayOf()` for arrays)
 - **Immutable state updates** — always spread/filter, never mutate state directly
 - **`useCallback`** for handlers passed as props to prevent unnecessary re-renders
+- **`useRef`** for mutable instance values (e.g. ID counters) that don't trigger re-renders
 - **Functional updater form** (`setTodos(prev => ...)`) to avoid stale closure bugs
-- **Accessibility** — use semantic HTML (`<nav>`, `<ul>`, `<li>`, `<label>`), ARIA labels on interactive elements
+- **Semantic HTML** — use `<main>`, `<nav>`, `<ul>`, `<li>`, `<label>` with ARIA labels on interactive elements
 - **No inline `bind()`** — use arrow functions or callbacks
 - **Short fragment syntax** (`<>...</>`) over `React.Fragment`
 
 ## Architecture
 
 ```
-App (state: todos[])
+App (state: todos[], nextId ref)
 ├── Header (nav links)
 ├── AddTodo (form → addTodo callback)
-└── Todos (list)
+└── Todos (list, with empty state)
     └── TodoItem × N (checkbox + delete button)
 ```
 

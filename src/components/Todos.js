@@ -3,6 +3,10 @@ import PropTypes from 'prop-types';
 import TodoItem from './TodoItem';
 
 function Todos({ todos, markComplete, delTodo }) {
+  if (todos.length === 0) {
+    return <p style={{ textAlign: 'center', color: '#888', padding: '20px' }}>No todos yet. Add one above!</p>;
+  }
+
   return (
     <ul style={{ listStyle: 'none', padding: 0 }} aria-label="Todo list">
       {todos.map(todo => (

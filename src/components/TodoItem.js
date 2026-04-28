@@ -26,7 +26,7 @@ function TodoItem({ todo, markComplete, delTodo }) {
   };
 
   return (
-    <li style={style} role="listitem">
+    <li style={style}>
       <label style={{ flex: 1, cursor: 'pointer' }}>
         <input
           type="checkbox"

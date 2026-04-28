@@ -1,14 +1,13 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useRef } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Todos from './components/Todos';
 import Header from './components/layouts/Header';
 import AddTodo from './components/AddTodo';
 import About from './components/pages/About';
 
-let nextId = 1;
-
 function App() {
   const [todos, setTodos] = useState([]);
+  const nextId = useRef(1);
 
   const markComplete = useCallback((id) => {
     setTodos(prev => prev.map(todo =>
@@ -21,7 +20,7 @@ function App() {
   }, []);
 
   const addTodo = useCallback((title) => {
-    setTodos(prev => [...prev, { id: nextId++, title, completed: false }]);
+    setTodos(prev => [...prev, { id: nextId.current++, title, completed: false }]);
   }, []);
 
   return (
@@ -30,12 +29,12 @@ function App() {
         <div className="container">
           <Header />
           <Route exact path="/" render={() => (
-            <>
+            <main>
               <AddTodo addTodo={addTodo} />
               <Todos todos={todos} markComplete={markComplete} delTodo={delTodo} />
-            </>
+            </main>
           )} />
-          <Route path="/about" component={About} />
+          <Route path="/about" render={() => <About />} />
         </div>
       </div>
     </Router>
